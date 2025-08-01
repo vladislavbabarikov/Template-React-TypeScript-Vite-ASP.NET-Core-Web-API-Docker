@@ -1,0 +1,20 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    { "label": "build-server", "type": "process", "command": "dotnet", "args": ["build", "${workspaceFolder}/server/server.csproj"] },
+    {
+      "label": "wait-api",
+      "type": "shell",
+      "command": "bash",
+      "args": ["-lc", "until curl -fsS http://localhost:5000/api/hello >/dev/null 2>&1; do sleep 1; done"],
+      "windows": {
+        "command": "powershell",
+        "args": ["-NoProfile","-Command","while ($true) { try { Invoke-WebRequest -Uri http://localhost:5000/api/hello -TimeoutSec 2 | Out-Null; break } catch { Start-Sleep -Seconds 1 } }"]
+      },
+      "presentation": { "reveal": "never", "panel": "dedicated", "clear": true },
+      "problemMatcher": []
+    },
+    { "label": "compose-up-prod", "type": "shell", "command": "docker", "args": ["compose", "-f", "docker-compose.yml", "-f", "docker-compose.prod.yml", "up", "-d", "--build"], "problemMatcher": [] },
+    { "label": "compose-down",    "type": "shell", "command": "docker", "args": ["compose", "down"], "problemMatcher": [] }
+  ]
+}

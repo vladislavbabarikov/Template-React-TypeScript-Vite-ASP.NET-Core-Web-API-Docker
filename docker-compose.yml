@@ -1,0 +1,16 @@
+services:
+  server:
+    build: { context: ., dockerfile: server/Dockerfile }
+    image: app-server:dev
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ENABLE_SWAGGER: "true"
+    ports: [ "8080:8080" ]
+  client:
+    build:
+      context: .
+      dockerfile: client/Dockerfile
+      args: { VITE_API_URL: http://server:8080 }
+    image: app-client:dev
+    depends_on: [ server ]
+    ports: [ "8081:80" ]

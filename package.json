@@ -1,0 +1,12 @@
+{
+  "name": "template-react-typescript-vite-asp.net-core-web-api-docker",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently -k -n API,WEB \"dotnet run --project server/server.csproj --urls http://localhost:5000\" \"npm run dev --prefix client\"",
+    "prod:up": "docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d --build",
+    "prod:down": "docker compose down"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

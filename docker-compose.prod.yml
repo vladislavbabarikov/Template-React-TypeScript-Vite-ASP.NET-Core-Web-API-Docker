@@ -1,0 +1,7 @@
+services:
+  server:
+    environment:
+      ASPNETCORE_ENVIRONMENT: Production
+      ENABLE_SWAGGER: "true"   # change to "false" if not needed in prod
+  client:
+    ports: [ "8081:80" ]

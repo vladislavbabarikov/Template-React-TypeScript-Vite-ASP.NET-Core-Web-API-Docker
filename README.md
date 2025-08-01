@@ -1,5 +1,5 @@
 > # Template: React + TypeScript (Vite) + ASP.NET Core Web API + Docker  
-> 🌐 Read in other language: [Русский](README.ru.md)
+> 🌐 Read in other language: [Русский](README-ru.md)
 
 This repository contains a CLI script that generates a **full-stack project**, including:
 
